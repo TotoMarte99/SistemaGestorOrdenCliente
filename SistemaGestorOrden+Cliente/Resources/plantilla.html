@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Orden de Reparación</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0.5cm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 9pt;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .receipt {
+            margin-bottom: 5px;
+            page-break-inside: avoid;
+        }
+
+        .receipt-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 3px;
+            background-color: #f0f0f0;
+            padding: 2px;
+            border: 1px solid #000;
+            font-size: 9pt;
+        }
+
+        table.border {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            table.border th {
+                padding: 2px;
+                border: 1px solid black;
+            }
+
+            table.border td {
+                padding: 2px;
+                border: 1px solid black;
+            }
+
+        .header {
+            width: 100%;
+        }
+
+        .customer-details {
+            width: 100%;
+            margin-top: 3px;
+        }
+
+        .device-details {
+            width: 100%;
+            margin-top: 3px;
+        }
+
+        .observations {
+            width: 100%;
+            margin-top: 3px;
+        }
+
+        .footer {
+            width: 100%;
+            margin-top: 3px;
+            border-top: 1px dashed #000;
+            padding-top: 2px;
+            font-size: 7pt;
+        }
+
+        .field-label {
+            width: 20%;
+            font-weight: bold;
+        }
+
+        .field-value {
+            width: 30%;
+            border-bottom: 1px solid black;
+        }
+
+        .separator {
+            border-top: 1px dashed #000;
+            margin: 5px 0;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .watermark {
+            font-weight: bold;
+            color: #888;
+        }
+
+        h4 {
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        p {
+            margin: 2px 0;
+        }
+
+        ol {
+            margin: 2px 0 2px 20px;
+            padding: 0;
+        }
+
+        .signature-line {
+            width: 50%;
+            text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid black;
+            font-size: 8pt;
+        }
+
+        @media print {
+            body {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ORIGINAL COPY -->
+    <div class="receipt">
+        <div class="receipt-title">ORIGINAL</div>
+        
+        <table class="header">
+            <tr>
+                <td style="width:20%"></td>
+                <td style="width:60%" align="center" valign="top">
+                    <table>
+                        <tr><td align="center"><h4 style="margin:0px">SERVICIO TÉCNICO MAQUINARIAS MIGUEL</h4></td></tr>
+                        <tr><td align="center">Dirección: Ricardo Nuñez 602</td></tr>
+                        <tr><td align="center">Teléfono: +54 341 610-5083 </td></tr>
+                    </table>
+                </td>
+                <td style="width:20%">
+                    <table class="border" style="width:100%">
+                        <tr><td align="center">RUC: 3434343434</td></tr> 
+                        <tr><td align="center" style="background-color:#D8D8D8">ORDEN DE REPARACIÓN</td></tr>
+                        <tr><td align="center">@ID_ORDEN</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table class="customer-details border">
+            <tr>
+                <td class="field-label">Nombre:</td>
+                <td class="field-value">@NOMBRE</td>
+                <td class="field-label">Apellido:</td>
+                <td class="field-value">@APELLIDO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Dirección:</td>
+                <td class="field-value">@DIRECCION</td>
+                <td class="field-label">Teléfono:</td>
+                <td class="field-value">@TELEFONO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Fecha de ingreso:</td>
+                <td class="field-value" colspan="3">@FECHA_INGRESO</td>
+            </tr>
+        </table>
+
+        <table class="device-details border">
+            <tr>
+                <td colspan="4" style="background-color:#D8D8D8; font-weight: bold; text-align: center;">DATOS DEL EQUIPO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Marca:</td>
+                <td class="field-value">@MARCA</td>
+                <td class="field-label">Modelo:</td>
+                <td class="field-value">@MODELO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Accesorios:</td>
+                <td class="field-value" colspan="3">@ACCESORIOS</td>
+            </tr>
+        </table>
+
+        <table class="observations border">
+            <tr>
+                <td style="background-color:#D8D8D8; font-weight: bold;">Observaciones</td>
+            </tr>
+            <tr>
+                <td style="height: 80px; vertical-align: top;">@OBSERVACIONES</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p><strong>CONDICIONES:</strong></p>
+            <ol>
+                <li>Los equipos serán revisados únicamente por personal técnico autorizado.</li>
+                <li>El presupuesto de reparación deberá ser aprobado por el cliente antes de proceder.</li>
+                <li>Los equipos no retirados después de 30 días serán considerados abandonados.</li>
+                <li>La garantía de reparación es válida por 90 días bajo condiciones normales de uso.</li>
+            </ol>
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 50%; text-align: center; padding-top: 20px; border-top: 1px solid black;">Firma del Cliente</td>
+                    <td style="width: 50%; text-align: center; padding-top: 20px; border-top: 1px solid black;">Firma del Técnico</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="separator">
+        <span class="watermark">✂ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+    </div>
+
+    <!-- DUPLICATE COPY -->
+    <div class="receipt">
+        <div class="receipt-title">DUPLICADO</div>
+        
+        <table class="header">
+            <tr>
+                <td style="width:20%"></td>
+                <td style="width:60%" align="center" valign="top">
+                    <table>
+                        <tr><td align="center"><h4 style="margin:0px">SERVICIO TÉCNICO MAQUINARIAS MIGUEL</h4></td></tr>
+                        <tr><td align="center">Dirección: Ricardo Nuñez 602</td></tr>
+                        <tr><td align="center">Teléfono: +54 341 610-5083</td></tr>
+                    </table>
+                </td>
+                <td style="width:20%">
+                    <table class="border" style="width:100%">
+                        <tr><td align="center">RUC: 3434343434</td></tr>
+                        <tr><td align="center" style="background-color:#D8D8D8">ORDEN DE REPARACIÓN</td></tr>
+                        <tr><td align="center">Nro: 00000111</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table class="customer-details border">
+            <tr>
+                <td class="field-label">Nombre:</td>
+                <td class="field-value">@NOMBRE</td>
+                <td class="field-label">Apellido:</td>
+                <td class="field-value">@APELLIDO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Dirección:</td>
+                <td class="field-value">@DIRECCION</td>
+                <td class="field-label">Teléfono:</td>
+                <td class="field-value">@TELEFONO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Fecha de ingreso:</td>
+                <td class="field-value" colspan="3">@FECHA_INGRESO</td>
+            </tr>
+        </table>
+
+        <table class="device-details border">
+            <tr>
+                <td colspan="4" style="background-color:#D8D8D8; font-weight: bold; text-align: center;">DATOS DEL EQUIPO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Marca:</td>
+                <td class="field-value">@MARCA</td>
+                <td class="field-label">Modelo:</td>
+                <td class="field-value">@MODELO</td>
+            </tr>
+            <tr>
+                <td class="field-label">Accesorios:</td>
+                <td class="field-value" colspan="3">@ACCESORIOS</td>
+            </tr>
+        </table>
+
+        <table class="observations border">
+            <tr>
+                <td style="background-color:#D8D8D8; font-weight: bold;">Observaciones</td>
+            </tr>
+            <tr>
+                <td style="height: 80px; vertical-align: top;">@OBSERVACIONES</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p><strong>CONDICIONES:</strong></p>
+            <ol>
+                <li>Los equipos serán revisados únicamente por personal técnico autorizado.</li>
+                <li>El presupuesto de reparación deberá ser aprobado por el cliente antes de proceder.</li>
+                <li>Los equipos no retirados después de 30 días serán considerados abandonados.</li>
+                <li>La garantía de reparación es válida por 90 días bajo condiciones normales de uso.</li>
+            </ol>
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 50%; text-align: center; padding-top: 20px; border-top: 1px solid black;">Firma del Cliente</td>
+                    <td style="width: 50%; text-align: center; padding-top: 20px; border-top: 1px solid black;">Firma del Técnico</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
