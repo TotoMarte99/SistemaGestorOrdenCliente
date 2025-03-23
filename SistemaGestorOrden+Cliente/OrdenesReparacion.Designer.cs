@@ -60,17 +60,19 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 46);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label1.Location = new Point(25, 81);
             label1.Name = "label1";
-            label1.Size = new Size(74, 20);
+            label1.Size = new Size(77, 20);
             label1.TabIndex = 0;
             label1.Text = "ID Cliente";
             // 
             // btnBuscarCliente
             // 
-            btnBuscarCliente.Location = new Point(512, 26);
+            btnBuscarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscarCliente.Location = new Point(18, 29);
             btnBuscarCliente.Name = "btnBuscarCliente";
-            btnBuscarCliente.Size = new Size(131, 29);
+            btnBuscarCliente.Size = new Size(106, 30);
             btnBuscarCliente.TabIndex = 2;
             btnBuscarCliente.Text = "Buscar ID Cliente";
             btnBuscarCliente.UseVisualStyleBackColor = true;
@@ -79,15 +81,17 @@
             // fechaIngreso
             // 
             fechaIngreso.Format = DateTimePickerFormat.Short;
-            fechaIngreso.Location = new Point(497, 84);
+            fechaIngreso.Location = new Point(568, 145);
             fechaIngreso.Name = "fechaIngreso";
-            fechaIngreso.Size = new Size(117, 27);
+            fechaIngreso.Size = new Size(126, 30);
             fechaIngreso.TabIndex = 3;
             // 
             // txtIdCliente
             // 
             txtIdCliente.AutoSize = true;
-            txtIdCliente.Location = new Point(109, 46);
+            txtIdCliente.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtIdCliente.ForeColor = SystemColors.ControlDarkDark;
+            txtIdCliente.Location = new Point(110, 86);
             txtIdCliente.Name = "txtIdCliente";
             txtIdCliente.Size = new Size(15, 20);
             txtIdCliente.TabIndex = 4;
@@ -96,50 +100,56 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(24, 89);
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(216, 86);
             label3.Name = "label3";
-            label3.Size = new Size(64, 20);
+            label3.Size = new Size(67, 20);
             label3.TabIndex = 5;
             label3.Text = "Nombre";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(198, 89);
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label4.Location = new Point(433, 86);
             label4.Name = "label4";
-            label4.Size = new Size(66, 20);
+            label4.Size = new Size(67, 20);
             label4.TabIndex = 7;
             label4.Text = "Apellido";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(197, 141);
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(216, 153);
             label5.Name = "label5";
-            label5.Size = new Size(67, 20);
+            label5.Size = new Size(70, 20);
             label5.TabIndex = 9;
             label5.Text = "Telefono";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(24, 141);
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label6.Location = new Point(18, 153);
             label6.Name = "label6";
-            label6.Size = new Size(72, 20);
+            label6.Size = new Size(74, 20);
             label6.TabIndex = 11;
             label6.Text = "Direccion";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(365, 89);
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(433, 153);
             label7.Name = "label7";
-            label7.Size = new Size(100, 20);
+            label7.Size = new Size(106, 20);
             label7.TabIndex = 13;
             label7.Text = "Fecha Ingreso";
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(txtObservaciones);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(txtAccesorios);
@@ -148,100 +158,109 @@
             groupBox1.Controls.Add(txtModelo);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(txtMarca);
-            groupBox1.Location = new Point(52, 235);
+            groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(12, 253);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(676, 387);
+            groupBox1.Size = new Size(760, 418);
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Máquina";
+            groupBox1.Text = "Datos Máquina";
             // 
             // txtObservaciones
             // 
-            txtObservaciones.Location = new Point(50, 224);
+            txtObservaciones.Location = new Point(47, 220);
             txtObservaciones.Name = "txtObservaciones";
-            txtObservaciones.Size = new Size(572, 97);
+            txtObservaciones.Size = new Size(657, 103);
             txtObservaciones.TabIndex = 15;
             txtObservaciones.Text = "";
             // 
             // label11
             // 
             label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label11.Location = new Point(47, 185);
             label11.Name = "label11";
-            label11.Size = new Size(105, 20);
+            label11.Size = new Size(111, 20);
             label11.TabIndex = 14;
             label11.Text = "Observaciones";
             // 
             // txtAccesorios
             // 
-            txtAccesorios.Location = new Point(400, 59);
+            txtAccesorios.Location = new Point(400, 74);
             txtAccesorios.Name = "txtAccesorios";
-            txtAccesorios.Size = new Size(222, 97);
+            txtAccesorios.Size = new Size(304, 81);
             txtAccesorios.TabIndex = 12;
             txtAccesorios.Text = "";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(314, 62);
+            label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label10.Location = new Point(394, 51);
             label10.Name = "label10";
-            label10.Size = new Size(80, 20);
+            label10.Size = new Size(84, 20);
             label10.TabIndex = 11;
             label10.Text = "Accesorios";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(35, 113);
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label9.Location = new Point(205, 51);
             label9.Name = "label9";
-            label9.Size = new Size(61, 20);
+            label9.Size = new Size(62, 20);
             label9.TabIndex = 9;
             label9.Text = "Modelo";
             // 
             // txtModelo
             // 
-            txtModelo.Location = new Point(102, 113);
+            txtModelo.Location = new Point(205, 77);
             txtModelo.Name = "txtModelo";
-            txtModelo.Size = new Size(125, 27);
+            txtModelo.Size = new Size(125, 31);
             txtModelo.TabIndex = 8;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(35, 59);
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label8.Location = new Point(50, 51);
             label8.Name = "label8";
-            label8.Size = new Size(50, 20);
+            label8.Size = new Size(52, 20);
             label8.TabIndex = 7;
             label8.Text = "Marca";
             // 
             // txtMarca
             // 
-            txtMarca.Location = new Point(91, 56);
+            txtMarca.Location = new Point(50, 74);
             txtMarca.Name = "txtMarca";
-            txtMarca.Size = new Size(125, 27);
+            txtMarca.Size = new Size(125, 31);
             txtMarca.TabIndex = 6;
             // 
             // txtBuscarCliente
             // 
-            txtBuscarCliente.Location = new Point(381, 26);
+            txtBuscarCliente.Location = new Point(142, 29);
             txtBuscarCliente.Name = "txtBuscarCliente";
-            txtBuscarCliente.Size = new Size(125, 27);
+            txtBuscarCliente.Size = new Size(125, 30);
             txtBuscarCliente.TabIndex = 15;
             // 
             // botonCargarOrden
             // 
-            botonCargarOrden.Location = new Point(267, 641);
+            botonCargarOrden.Anchor = AnchorStyles.Bottom;
+            botonCargarOrden.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            botonCargarOrden.Location = new Point(272, 690);
             botonCargarOrden.Name = "botonCargarOrden";
-            botonCargarOrden.Size = new Size(242, 29);
+            botonCargarOrden.Size = new Size(242, 35);
             botonCargarOrden.TabIndex = 16;
-            botonCargarOrden.Text = "Cargar e Imprimir Orden";
+            botonCargarOrden.Text = "Cargar e Generar Orden";
             botonCargarOrden.UseVisualStyleBackColor = true;
             botonCargarOrden.Click += botonCargarOrden_Click;
             // 
             // txtNombre
             // 
             txtNombre.AutoSize = true;
-            txtNombre.Location = new Point(109, 84);
+            txtNombre.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            txtNombre.ForeColor = SystemColors.ControlDarkDark;
+            txtNombre.Location = new Point(315, 86);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(15, 20);
             txtNombre.TabIndex = 17;
@@ -249,6 +268,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(txttDire);
             groupBox2.Controls.Add(txttTelef);
             groupBox2.Controls.Add(txttApe);
@@ -263,9 +283,10 @@
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label1);
-            groupBox2.Location = new Point(60, 12);
+            groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(656, 217);
+            groupBox2.Size = new Size(760, 217);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Datos Cliente";
@@ -273,7 +294,9 @@
             // txttDire
             // 
             txttDire.AutoSize = true;
-            txttDire.Location = new Point(109, 141);
+            txttDire.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            txttDire.ForeColor = SystemColors.ControlDarkDark;
+            txttDire.Location = new Point(110, 153);
             txttDire.Name = "txttDire";
             txttDire.Size = new Size(15, 20);
             txttDire.TabIndex = 23;
@@ -282,7 +305,9 @@
             // txttTelef
             // 
             txttTelef.AutoSize = true;
-            txttTelef.Location = new Point(282, 141);
+            txttTelef.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            txttTelef.ForeColor = SystemColors.ControlDarkDark;
+            txttTelef.Location = new Point(315, 153);
             txttTelef.Name = "txttTelef";
             txttTelef.Size = new Size(15, 20);
             txttTelef.TabIndex = 22;
@@ -291,7 +316,9 @@
             // txttApe
             // 
             txttApe.AutoSize = true;
-            txttApe.Location = new Point(282, 89);
+            txttApe.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic);
+            txttApe.ForeColor = SystemColors.ControlDarkDark;
+            txttApe.Location = new Point(524, 86);
             txttApe.Name = "txttApe";
             txttApe.Size = new Size(15, 20);
             txttApe.TabIndex = 21;
@@ -302,11 +329,14 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(800, 691);
+            BackColor = Color.Gold;
+            ClientSize = new Size(803, 737);
             Controls.Add(groupBox2);
             Controls.Add(botonCargarOrden);
             Controls.Add(groupBox1);
+            MaximizeBox = false;
             Name = "OrdenesReparacion";
+            SizeGripStyle = SizeGripStyle.Hide;
             Text = "OrdenesReparacion";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

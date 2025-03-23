@@ -33,9 +33,9 @@ namespace SistemaGestorOrden_Cliente
             if (dgvTotalOrdenes.Columns.Count > 11)
             {
                 dgvTotalOrdenes.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                dgvTotalOrdenes.Columns[0].HeaderText = "N° Orden";
+                dgvTotalOrdenes.Columns[0].HeaderText = "id_orden";
                 dgvTotalOrdenes.Columns[1].HeaderText = "ID Cliente";
-                dgvTotalOrdenes.Columns[5].HeaderText = "Telefono Cliente";
+                dgvTotalOrdenes.Columns[5].HeaderText = "Telefono";
                 dgvTotalOrdenes.Columns[6].HeaderText = "Email";
                 dgvTotalOrdenes.Columns[7].HeaderText = "Fecha de Ingreso";
                 dgvTotalOrdenes.Columns[8].HeaderText = "Marca Maquina";
@@ -80,9 +80,15 @@ namespace SistemaGestorOrden_Cliente
         {
             dgvTotalOrdenes.DataSource = BindingSourceClientes;
             BindingSourceClientes.DataSource = GetOrdenes("SEL_ORDENES");
-            SetOrdenes();
 
-            if (!dgvTotalOrdenes.Columns.Contains("estados"))
+            // Imprimir nombres de columnas para depuración
+            foreach (DataColumn column in ((DataTable)BindingSourceClientes.DataSource).Columns)
+            {
+                Console.WriteLine(column.ColumnName);
+            }
+
+
+            if (!dgvTotalOrdenes.Columns.Contains("Estados"))
             {
                 DataGridViewComboBoxColumn estadoColumn = new DataGridViewComboBoxColumn();
                 estadoColumn.HeaderText = "Actualiza Estado";
@@ -96,6 +102,15 @@ namespace SistemaGestorOrden_Cliente
             dgvTotalOrdenes.CellValueChanged += dgvTotalOrdenes_CellValueChanged;
             dgvTotalOrdenes.CurrentCellDirtyStateChanged += dgvTotalOrdenes_CurrentCellDirtyStateChanged;
 
+
+
+            foreach (DataGridViewColumn column in dgvTotalOrdenes.Columns)
+            {
+                if (column.Index == 0 || column.Index == 2 || column.Index == 3 || column.Index == 4 || column.Index == 5 || column.Index == 6 || column.Index == 7 || column.Index == 8)
+                {
+                    cmbOrdenes.Items.Add(column.HeaderText);
+                }
+            }
         }
 
         private void dgvTotalOrdenes_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -208,14 +223,14 @@ namespace SistemaGestorOrden_Cliente
 
         private void dgvTotalOrdenes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvTotalOrdenes.Columns["Estados"].Index && e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvTotalOrdenes.Columns["Estados"].Index)
             {
                 int idOrden = Convert.ToInt32(dgvTotalOrdenes.Rows[e.RowIndex].Cells["id_orden"].Value);
                 string? nuevoEstado = dgvTotalOrdenes.Rows[e.RowIndex].Cells["Estados"].Value?.ToString();
 
                 if (nuevoEstado != null)
                 {
-                    MessageBox.Show($"Actualizando Orden {idOrden} a Estado: {nuevoEstado}"); // Comprobar si se está ejecutando
+                    MessageBox.Show($"Actualizando Orden {idOrden} a Estado: {nuevoEstado}");
 
                     // Llamar a la función para actualizar en la base de datos
                     ActualizarEstadosOrden(idOrden, nuevoEstado);
@@ -239,15 +254,62 @@ namespace SistemaGestorOrden_Cliente
                     cmd.Parameters.AddWithValue("@id_orden", idOrden);
                     cmd.Parameters.AddWithValue("@estado", nuevoEstado);
 
-                    
 
-                            // Enviar correo electrónico
-                        }
-                    }
+
+                    // Enviar correo electrónico
                 }
-
-                //MessageBox.Show("Estado actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void txtBuscarOrden_TextChanged(object sender, EventArgs e)
+        {
+            if (dgvTotalOrdenes.DataSource is BindingSource bindingSource)
+            {
+                if (bindingSource.DataSource is DataTable dt)
+                {
+                    string columna = cmbOrdenes.SelectedItem.ToString();
+                    string filtro = txtBuscarOrden.Text.Trim();
+
+                    if (dt.Columns.Contains(columna))
+                    {
+                        if (!string.IsNullOrWhiteSpace(filtro))
+                        {
+                            if (dt.Columns[columna].DataType == typeof(string))
+                            {
+                                dt.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", columna, filtro);
+                            }
+                            else if (dt.Columns[columna].DataType == typeof(int))
+                            {
+                                if (int.TryParse(filtro, out int intFiltro))
+                                {
+                                    dt.DefaultView.RowFilter = string.Format("[{0}] = {1}", columna, intFiltro);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El filtro debe ser un número entero.");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            dt.DefaultView.RowFilter = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Columna '{columna}' No existe.");
+                    }
+                }
+            }
+        }
+
+        private void cmbOrdenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //MessageBox.Show("Estado actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+}
 
 

@@ -41,6 +41,7 @@
             // 
             dgvTotalClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTotalClientes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvTotalClientes.BackgroundColor = SystemColors.ButtonHighlight;
             dgvTotalClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTotalClientes.Location = new Point(12, 67);
             dgvTotalClientes.Name = "dgvTotalClientes";
@@ -68,6 +69,7 @@
             // 
             // btnBuscarClienteTotal
             // 
+            btnBuscarClienteTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarClienteTotal.Location = new Point(781, 23);
             btnBuscarClienteTotal.Name = "btnBuscarClienteTotal";
             btnBuscarClienteTotal.Size = new Size(143, 29);
@@ -85,18 +87,22 @@
             // 
             // btnCargar0
             // 
-            btnCargar0.Location = new Point(12, 23);
+            btnCargar0.BackColor = Color.Crimson;
+            btnCargar0.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCargar0.ForeColor = SystemColors.ButtonHighlight;
+            btnCargar0.Location = new Point(12, 32);
             btnCargar0.Name = "btnCargar0";
             btnCargar0.Size = new Size(36, 29);
             btnCargar0.TabIndex = 5;
             btnCargar0.Text = "X";
-            btnCargar0.UseVisualStyleBackColor = true;
+            btnCargar0.UseVisualStyleBackColor = false;
             btnCargar0.Click += btnCargar0_Click;
             // 
             // TotalClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gold;
             ClientSize = new Size(946, 513);
             Controls.Add(btnCargar0);
             Controls.Add(txtIDCliente);

@@ -7,6 +7,7 @@ namespace SistemaGestorOrden_Cliente
     {
         BindingSource BindingSourceClientes = new BindingSource();
         bool BlnNuevo = true;
+        // En Clientes.Designer.cs
 
         public Clientes()
         {
@@ -27,6 +28,18 @@ namespace SistemaGestorOrden_Cliente
 
             // Actualizar el DateTimePicker a la fecha actual
             fechaIngreso.Value = DateTime.Now;
+
+            // Poblar el ComboBox con los nombres de las columnas del DataGridView
+            foreach (DataGridViewColumn column in dgvClientes.Columns)
+            {
+                if (column.Index != 0) // No tomar la columna 0
+                {
+                    cmbCliente.Items.Add(column.HeaderText);
+                }
+            }
+
+            // Asociar el evento SelectedIndexChanged del ComboBox
+            //cmbCliente.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         }
 
         private void SetClientes()
@@ -231,9 +244,9 @@ namespace SistemaGestorOrden_Cliente
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text.Trim() == "")
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
-                MessageBox.Show("Debe ingresar un valor para buscar", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar valores para Nombre y Apellido", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtIDCliente.Text = "";
                 txtNombre.Text = "";
                 txtApellido.Text = "";
@@ -246,7 +259,16 @@ namespace SistemaGestorOrden_Cliente
                 return;
             }
 
+            // Dividir el texto ingresado en nombre y apellido
+            string[] nombreApellido = txtBuscar.Text.Split(' ');
+            if (nombreApellido.Length < 2)
+            {
+                MessageBox.Show("Debe ingresar tanto el nombre como el apellido", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string nombre = nombreApellido[0];
+            string apellido = nombreApellido[1];
 
             using (SqlConnection con = new SqlConnection())
             {
@@ -259,7 +281,8 @@ namespace SistemaGestorOrden_Cliente
                     cmd.CommandType = CommandType.StoredProcedure; // Tipo de comando
                     cmd.Connection = con;
                     // SETEO PARAMETROS. ASIGNACION DE VALORES A LOS PARAMETROS
-                    cmd.Parameters.AddWithValue("id_cliente", txtBuscar.Text);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@apellido", apellido);
 
                     SqlDataReader DatosCliente = cmd.ExecuteReader();
 
@@ -299,7 +322,6 @@ namespace SistemaGestorOrden_Cliente
                     }
 
                     DatosCliente.Close();
-
                 }
             }
         }
@@ -320,6 +342,119 @@ namespace SistemaGestorOrden_Cliente
         {
             OrdenesReparacion Ordenes = new OrdenesReparacion();
             Ordenes.ShowDialog();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscaTelefono_Click(object sender, EventArgs e)
+        {
+            //if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            // {
+            // MessageBox.Show("Debe ingresar valores para Nombre y Apellido", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            // txtIDCliente.Text = "";
+            // txtNombre.Text = "";
+            // txtApellido.Text = "";
+            // txtDireccion.Text = "";
+            // txtEmail.Text = "";
+            // txtTelefono.Text = "";
+            // fechaIngreso.Text = "";
+            // txtBuscar.Text = "";
+            // CargarDatos();
+            // return;
+            //}
+
+
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = "Data Source=VICTUS-TOTO\\SQLEXPRESS; Initial Catalog=Clientes; Integrated Security=True; TrustServerCertificate=True;";
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SEL_CLIENTE"; // Nombre procedure
+                    cmd.CommandType = CommandType.StoredProcedure; // Tipo de comando
+                    cmd.Connection = con;
+                    // SETEO PARAMETROS. ASIGNACION DE VALORES A LOS PARAMETROS
+                    //cmd.Parameters.AddWithValue("@telefono");
+
+                    SqlDataReader DatosCliente = cmd.ExecuteReader();
+
+                    if (DatosCliente.HasRows)
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(DatosCliente);
+                        dgvClientes.DataSource = dt;
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            DataRow row = dt.Rows[0];
+                            txtIDCliente.Text = row["id_cliente"].ToString(); // Guardamos el ID
+                            txtNombre.Text = row["nombre"].ToString();
+                            txtApellido.Text = row["apellido"].ToString();
+                            txtDireccion.Text = row["direccion"].ToString();
+                            txtEmail.Text = row["email"].ToString();
+                            txtTelefono.Text = row["telefono"].ToString();
+                            fechaIngreso.Text = row["fecha_ingreso"].ToString();
+
+                            BlnNuevo = false;
+                            dgvClientes.Rows[0].Selected = true;
+                            txtBuscar.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron registros", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtNombre.Text = "";
+                        txtApellido.Text = "";
+                        txtDireccion.Text = "";
+                        txtEmail.Text = "";
+                        txtTelefono.Text = "";
+                        fechaIngreso.Text = "";
+                        txtBuscar.Text = "";
+                        BlnNuevo = true;
+                    }
+
+                    DatosCliente.Close();
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear(); // Borra el texto de búsqueda al cambiar la columna de filtro
+
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (dgvClientes.DataSource is BindingSource bindingSource)
+            {
+                if (bindingSource.DataSource is DataTable dt)
+                {
+                    string columna = cmbCliente.SelectedItem.ToString();
+                    string filtro = txtBuscar.Text.Trim();
+
+                    if (dt.Columns.Contains(columna))
+                    {
+                        if (!string.IsNullOrWhiteSpace(filtro))
+                        {
+                            dt.DefaultView.RowFilter = string.Format("{0} LIKE '%{1}%'", columna, filtro);
+                        }
+                        else
+                        {
+                            dt.DefaultView.RowFilter = "";
+                        }
+                    }
+                    else
+                    {
+                        // Handle the case where the column does not exist
+                        MessageBox.Show($"Column '{columna}' does not exist in the DataTable.");
+                    }
+                }
+            }
         }
     }
 }
