@@ -1,18 +1,35 @@
-Descripción <br> <br>
-Este es un proyecto personal desarrollado para gestionar clientes y crear órdenes de reparación. Permite agregar, eliminar y actualizar información de clientes almacenada en una base de datos SQL, así como generar órdenes de reparación en formato PDF a partir de los datos ingresados, utilizando una plantilla HTML predefinida.
-Funcionalidades
-Gestión de Clientes: Ingreso, eliminación y actualización de datos de clientes en una base de datos SQL.
+# Sistema Gestión Órdenes y Clientes
 
-Creación de Órdenes: Generación de órdenes de reparación buscando el ID del cliente y completando los detalles de la reparación.
+Este es un proyecto personal desarrollado en **C#** que permite gestionar clientes y generar órdenes de reparación de manera eficiente. Utiliza una base de datos **SQL Server** para almacenar la información y la librería **iTextSharp** para exportar órdenes en formato **PDF** a partir de una plantilla **HTML**.
 
-Exportación a PDF: Conversión de la orden a un archivo PDF basado en una plantilla HTML.
+---
 
-Tecnologías
-C# (lenguaje principal)
+##  Funcionalidades
 
-SQL (base de datos para almacenar clientes y órdenes)
+### Gestión de Clientes
+- Agregar nuevos clientes
+- Editar información de clientes existentes
+- Eliminar clientes de la base de datos
 
-HTML (para la plantilla de las órdenes)
+### Creación de Órdenes de Reparación
+- Generación de órdenes ingresando el ID del cliente
+- Completar detalles personalizados sobre la reparación
+- Almacenar órdenes vinculadas a clientes
 
-[Librería para PDF iTextSharp]
+### Exportación a PDF
+- Generación de un archivo PDF con el detalle de la orden
+- Uso de una plantilla HTML para el diseño del documento
+- Conversión automática utilizando iTextSharp
+
+---
+
+##  Tecnologías Utilizadas
+
+- **C#** – Lenguaje principal de desarrollo
+- **SQL Server** – Base de datos para clientes y órdenes
+- **HTML** – Plantilla para la generación de órdenes
+- **iTextSharp** – Librería para crear archivos PDF
+
+---
+
 
